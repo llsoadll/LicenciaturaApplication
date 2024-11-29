@@ -1,16 +1,26 @@
 
-# Usar una imagen base de Maven para construir el JAR
-FROM maven:3.8.4-openjdk-17 AS build
+# Use Java 17 base image
+FROM openjdk:17-jdk-slim
+# Set working directory
 WORKDIR /app
+# Copy Maven wrapper and pom.xml
+COPY mvnw .
+COPY .mvn .mvn
 COPY pom.xml .
+# Give execution permissions
+RUN chmod +x ./mvnw
+# Copy source code
 COPY src ./src
-RUN mvn clean package -DskipTests
-
-# Usar una imagen base de JDK para ejecutar el JAR
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+# Build the application
+RUN ./mvnw clean package -DskipTests
+# Expose port (adjust if needed)
+EXPOSE 8080
+# Run the jar file
 ENTRYPOINT ["java","-jar","target/licenciatura-0.0.1-SNAPSHOT.jar"]
+
+
+
+
 
 
 
