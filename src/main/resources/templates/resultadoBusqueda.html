@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la Búsqueda</title>
+</head>
+<body>
+<h1>Resultado de la Búsqueda</h1>
+
+<div th:if="${estudiante != null}">
+    <h2>Estudiante encontrado:</h2>
+    <ul>
+        <li>ID: <span th:text="${estudiante.id}"></span></li>
+        <li>Nombre: <span th:text="${estudiante.nombre}"></span></li>
+        <li>Correo Electrónico: <span th:text="${estudiante.correoElectronico}"></span></li>
+        <!-- Aquí puedes agregar más atributos de estudiante -->
+    </ul>
+</div>
+
+<div th:if="${estudiante == null}">
+    <h2>No se encontró el estudiante con ese ID.</h2>
+</div>
+
+<a href="/estudiantes/lista">Volver a la lista de estudiantes</a>
+</body>
+</html>

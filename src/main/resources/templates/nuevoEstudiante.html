@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Estudiante</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --hover-color: #2980b9;
+            --background-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            padding: 20px;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        legend {
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        .checkbox-item {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .checkbox-item label {
+            display: inline;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .volver-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .volver-btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        /* Estilos para la barra de navegación */
+        .nav-bar {
+            background-color: var(--secondary-color);
+            display: flex;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-bar a {
+            color: white;
+            margin-right: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-bar a:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Registrar Nuevo Estudiante</h1>
+    </header>
+
+    <!-- Barra de navegación -->
+    <nav class="nav-bar">
+        <a href="/estudiantes/buscar/formulario">Buscar Estudiante</a>
+        <a href="/estudiantes/lista">Lista de Estudiantes</a>
+        <a href="/estudiantes/eliminar_estudiante">Eliminar Estudiante</a>
+    </nav>
+
+    <main>
+        <form action="/estudiantes/guardar" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre y apellido:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="anioIngreso">Año de Ingreso:</label>
+                <input type="number" id="anioIngreso" name="anioIngreso" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="correo" id="correo" name="correo" required>
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni">
+            </div>
+            <div class="form-group">
+                <label for="legajo">Legajo:</label>
+                <input type="text" id="legajo" name="legajo">
+            </div>
+            
+            
+
+            <div class="form-group">
+                <label for="tituloTFL">Título del TFL:</label>
+                <input type="text" id="tituloTFL" name="tituloTFL">
+            </div>
+            <div class="form-group">
+                <label for="tutor">Tutor:</label>
+                <input type="text" id="tutor" name="tutor">
+            </div>
+            <div class="form-group">
+                <label for="cotutor">Cotutor:</label>
+                <input type="text" id="cotutor" name="cotutor">
+            </div>
+            <div class="form-group">
+                <label for="evaluadores">Evaluadores:</label>
+                <textarea id="evaluadores" name="evaluadores"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fechaEnvioEvaluar">Fecha de Envío a Evaluar:</label>
+                <input type="date" id="fechaEnvioEvaluar" name="fechaEnvioEvaluar">
+            </div>
+            <div class="form-group">
+                <label for="observaciones">Observaciones:</label>
+                <textarea id="observaciones" name="observaciones"></textarea>
+            </div>
+
+            <div class="checkbox-group">
+              <fieldset>
+                  <legend>Estado del Trámite</legend>
+                  
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="solicitudTutor" name="solicitudTutor">
+                      <label for="solicitudTutor">Solicitud de Tutor</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="consentimientoTutor" name="consentimientoTutor">
+                      <label for="consentimientoTutor">Consentimiento de Tutor</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="espaciosCurriculares" name="espaciosCurriculares">
+                      <label for="espaciosCurriculares">Espacios Curriculares</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="informeTutor" name="informeTutor">
+                      <label for="informeTutor">Informe del Tutor</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="practicasProfesionales" name="practicasProfesionales">
+                      <label for="practicasProfesionales">Prácticas Profesionales</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="proyecto" name="proyecto">
+                      <label for="proyecto">Proyecto</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="tfl" name="tfl">
+                      <label for="tfl">TFL</label>
+                  </div>
+
+                  <div class="checkbox-item">
+                      <input type="checkbox" id="graduado" name="graduado">
+                      <label for="graduado">Graduado</label>
+                  </div>
+              </fieldset>
+          </div>
+
+
+
+            <button type="submit">Guardar</button>
+        </form>
+        <div style="text-align: center;">
+            <a href="/" class="volver-btn">Volver al Inicio</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Pablo Sanchez - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
